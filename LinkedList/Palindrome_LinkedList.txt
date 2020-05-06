@@ -1,0 +1,91 @@
+Check if a given linked list is palindrome or not. Return true or false.
+#SolutionFile
+bool check_palindrome(node* head)
+{
+    //node *tail=head;
+    node *temp=head;
+    int length=0;
+    while(temp!=NULL)
+    {
+        length++;
+        temp=temp->next;
+    }
+    int templen=length/2;
+    temp=head;
+    if(length%2==0)
+    {
+        while(templen!=0)
+        {
+            templen--;
+            temp=temp->next;
+        }
+        node *temp1=temp;
+        node *temp2=temp->next;
+        temp->next=NULL;
+        templen=length/2;
+        while(templen!=1)
+        {
+            temp=temp2;
+            temp2=temp->next;
+            temp->next=temp1;
+            temp1=temp;
+            templen--;
+        }
+        
+        while(temp1!=NULL)
+        {
+            //cout<<temp1->data;
+            //temp1=temp1->next;
+            if(temp1->data==head->data)
+            {
+                temp1=temp1->next;
+                head=head->next;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    else
+    {
+        while(templen!=0)
+        {
+            templen--;
+            temp=temp->next;
+        }
+        node *temp1=temp;
+        node *temp2=temp->next;
+        temp->next=NULL;
+        templen=length/2;
+        while(templen!=0)
+        {
+            temp=temp2;
+            temp2=temp->next;
+            temp->next=temp1;
+            temp1=temp;
+            templen--;
+        }
+        while(temp1->next!=NULL)
+        {
+            //cout<<temp1->data;
+            //temp1=temp1->next;
+            if(temp1->data==head->data)
+            {
+                temp1=temp1->next;
+                head=head->next;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        return true;
+        
+    }
+    
+    
+    
+    //write your code here
+}

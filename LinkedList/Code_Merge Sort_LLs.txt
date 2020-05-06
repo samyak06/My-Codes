@@ -1,0 +1,116 @@
+Sort a given linked list using Merge Sort.
+#Solution
+node* mergeTwoLLs(node *head1, node *head2) {
+    node *temp1=head1;
+    node *temp2=head2;
+    node *headfin=NULL,*tailfin=NULL;
+    while(temp1!=NULL && temp2!=NULL)
+    {
+        if(temp1->data<temp2->data)
+        {
+            node *newnode=new node(temp1->data);
+            if(headfin==NULL)
+            {
+                headfin=newnode;
+                tailfin=newnode;
+            }
+            else
+            {
+                tailfin->next=newnode;
+                tailfin=newnode;
+            }
+            temp1=temp1->next;
+        }
+        else
+        {
+            node *newnode=new node(temp2->data);
+            if(headfin==NULL)
+            {
+                headfin=newnode;
+                tailfin=newnode;
+            }
+            else
+            {
+                tailfin->next=newnode;
+                tailfin=newnode;
+            }
+            temp2=temp2->next;
+        }
+    }
+        if(temp1==NULL &&temp2!=NULL)
+        {
+            while(temp2!=NULL)
+            {
+            	node *newnode=new node(temp2->data);
+            	if(headfin==NULL)
+            	{
+                	headfin=newnode;
+                	tailfin=newnode;
+            	}
+            	else
+            	{
+                	tailfin->next=newnode;
+                	tailfin=newnode;
+            	}
+            	temp2=temp2->next;
+            }
+        }
+        if(temp2==NULL &&temp1!=NULL)
+        {
+            while(temp1!=NULL)
+            {
+            	node *newnode=new node(temp1->data);
+            	if(headfin==NULL)
+            	{
+                	headfin=newnode;
+                	tailfin=newnode;
+            	}
+            	else
+            	{
+                	tailfin->next=newnode;
+                	tailfin=newnode;
+            	}
+            	temp1=temp1->next;
+            }
+        }
+        if(temp1==NULL &&temp2==NULL)
+        {
+            tailfin->next=NULL;
+        }
+        return headfin;
+        
+        
+    /* Don't write main().
+     * Don't read input, it is passed as function argument.
+     * Return output and don't print it.
+     * Taking input is handled automatically.
+     */
+    
+}
+node* mergeSort(node *head) {
+    if(head->next==NULL)
+    {
+        return head;
+    }
+    node *temp=head,*imptemp;
+    int length=0;
+    while(temp!=NULL)
+    {
+        length++;
+        temp=temp->next;
+    }
+    temp=head;
+    int templen=length/2;
+    while(templen!=1)
+    {
+        temp=temp->next;
+        templen--;
+    }
+    imptemp=temp->next;
+    temp->next=NULL;
+    node* a=mergeSort(head);
+    node* b=mergeSort(imptemp);
+    return mergeTwoLLs(a,b);
+    
+    //write your code here
+}
