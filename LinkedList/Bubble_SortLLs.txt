@@ -1,0 +1,55 @@
+Bubble_SortLLs
+//Solution
+node* bubble_sort_LinkedList_itr(node* head)
+{
+    node *temp,*temporary,*temp1;
+    int length=0;
+    temp=head;
+    while(temp!=NULL)
+    {
+        length++;
+        temp=temp->next;
+    }
+    int t=1;
+    while(t!=length)
+    {
+        temp=head;
+        temp1=head;
+        while(temp->next!=NULL)
+        {
+            if(temp->data<=(temp->next)->data)
+            {
+                if(temp!=head)
+                temp1=temp1->next;
+                
+                temp=temp->next;
+                
+            }
+            else
+            {
+               temp1->next=temp->next;
+                if(temp==head)
+                {
+                    temp1=temp->next;
+                }
+               temporary=(temp->next)->next;
+               (temp->next)->next=temp;
+               temp->next=temporary;
+                if(temp!=head)
+                {
+                	temp1=temp1->next;
+                }
+                else if(temp==head)
+                {
+                	//temp1=head;
+                	//temp1=temp1->next;
+                    head=temp1;
+                }
+            }
+        }
+    //return head;
+        t++;
+		}
+    return head;
+    //write your code here
+}
