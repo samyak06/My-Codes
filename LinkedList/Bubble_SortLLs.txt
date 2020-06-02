@@ -1,5 +1,5 @@
 Bubble_SortLLs
-//Solution
+
 node* bubble_sort_LinkedList_itr(node* head)
 {
     node *temp,*temporary,*temp1;
